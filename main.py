@@ -1,20 +1,26 @@
 
 
 if __name__=="__main__":
-    import bluetooth
-    print("\n Scanning for bluetooth devices:")
+   import bluetooth
+
+target_name = "My Phone"
+target_address = None
+
+nearby_devices = bluetooth.discover_devices()
+
+for bdaddr in nearby_devices:
     
-    devices = bluetooth.discover_devices(lookup_names = True, lookup_class = True)
-    
-    number_of_devices = len(devices)
-    print(number_of_devices,"devices found")
-    for addr, name, device_class in devices:
-        print("\n Device:")
-        print("Device Name: %s" % (name))
-        print("Device Mac Address: %s" %(addr))
-        print("\n")
-        print("Device Class: %s" % (device_class))
-        print("\n")
+    print ("found target bluetooth device with address ", target_address)
+    #if target_name == bluetooth.lookup_name( bdaddr ):
+     #   target_address = bdaddr
+    #    break
+
+#if target_address is not None:
+#    print ("found target bluetooth device with address ", target_address)
+#else:
+#    print ("could not find target bluetooth device nearby")  
+            
+        
         
           
     

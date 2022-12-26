@@ -13,6 +13,9 @@ class BluetoothConfig:
     def server_name(self):
         return self.configs["server_name"]
 
+    @property
+    def timeout(self):
+        return int(self.timeout["timeout"])
 
 class ConfigParser:
     def __init__(self, filename: str):

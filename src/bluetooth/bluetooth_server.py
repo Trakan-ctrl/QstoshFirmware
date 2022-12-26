@@ -15,6 +15,7 @@ class BluetoothServer:
     def __init__(self):
         self.server_socket: BluetoothSocket = BluetoothSocket(bluetooth.RFCOMM)
         self.uuid: str                      = None
+        self.timeout: int                   = None
         self.port: int                      = None
         self.bt_settings: BluetoothConfig   = None
         self.client_socket: BluetoothSocket = None
@@ -23,6 +24,8 @@ class BluetoothServer:
     def init_config(self, config: ConfigParser):
         self.bt_settings = config.get_bluetooth_config()
         self.uuid = self.bt_settings.uuid
+        self.timeout = self.bt_settings.timeout 
+        
 
     def advertise_server(self):
         self.server_socket.bind(("", bluetooth.PORT_ANY))
@@ -38,6 +41,7 @@ class BluetoothServer:
 
     def accept_connection(self):
         self.client_socket, self.client_info = self.server_socket.accept()
+        self.client_socket.settimeout(self.timeout)
 
     def recv(self, numbytes: int = 1024):
         try:

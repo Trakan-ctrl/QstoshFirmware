@@ -24,7 +24,9 @@ class ConnectionBroker:
         self.callbacks[topic].append(callback)
 
     def start_broker(self):
-        self._broker_thread.start()
+        self._running = True
+        self._broker_thread.run()
+        
 
     def _broker_thread_method(self):
         try:
@@ -40,10 +42,10 @@ class ConnectionBroker:
                         callback(json_data)
         except (SocketClosed, ConnectionClosed):
             logger.info("Socket or connection closed")
-            self.server.close()
         except Exception as e:
             logger.error(type(e), e)
+        self.server.close()
 
     def stop_broker(self):
-        pass
-        #self._broker_thread.
+        self._running=False
+        self._broker_thread.join()

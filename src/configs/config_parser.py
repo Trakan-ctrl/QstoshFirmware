@@ -15,13 +15,13 @@ class BluetoothConfig:
 
     @property
     def timeout(self):
-        return int(self.timeout["timeout"])
+        return int(self.configs["timeout"])
 
 class ConfigParser:
     def __init__(self, filename: str):
-        self.parser = configparser.ConfigParser
-        self.config = self.parser.read(filename)
+        self.parser = configparser.ConfigParser()
+        self.parser.read(filename)
 
     def get_bluetooth_config(self):
-        return BluetoothConfig(self.config)
+        return BluetoothConfig(self.parser["bluetooth"])
 

@@ -25,27 +25,38 @@ class ConnectionBroker:
 
     def start_broker(self):
         self._running = True
-        self._broker_thread.run()
-        
+        self._broker_thread.start()
 
     def _broker_thread_method(self):
         try:
+            self.server.advertise_server()
+            self.server.accept_connection()
+            if self.on_client_connected:
+                self.on_client_connected()
             while self._running:
                 data = self.server.recv()
-                try:
-                    json_data = json.loads(data.decode())
-                except:
-                    json_data = None
-                    logger.warning("Could not parse message: {}".format(data))
-                if is_message_valid(json_data):
-                    for callback in self.callbacks[json_data["topic"]]:
-                        callback(json_data)
+                if data:
+                    try:
+                        json_data = json.loads(data.decode())
+                    except Exception as e:
+                        json_data = None
+                        logger.warning("Could not parse message: {}, reason: {} -> {}".format(data, type(e), e))
+                    if is_message_valid(json_data):
+                        print(json_data)
+                        if json_data["type"] not in self.callbacks:
+                            print("No callback for topic:", json_data["type"])
+                        for callback in self.callbacks[json_data["type"]]:
+                            callback(json_data)
         except (SocketClosed, ConnectionClosed):
             logger.info("Socket or connection closed")
+            self.server.close()
         except Exception as e:
             logger.error(type(e), e)
-        self.server.close()
+
+    def send(self, data: str):
+        self.server.send(data.encode())
 
     def stop_broker(self):
         self._running=False
+        self.server.close()
         self._broker_thread.join()

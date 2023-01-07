@@ -41,7 +41,7 @@ class BluetoothServer:
 
     def accept_connection(self):
         self.client_socket, self.client_info = self.server_socket.accept()
-        self.client_socket.settimeout(self.timeout)
+        #self.client_socket.settimeout(self.timeout)
 
     def recv(self, numbytes: int = 1024):
         try:

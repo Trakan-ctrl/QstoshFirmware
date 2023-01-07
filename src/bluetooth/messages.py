@@ -1,5 +1,4 @@
-def is_message_valid(message: dict) -> bool:
-    if not message:
-        return False
-    if isinstance(message, dict) and message["topic"] is not None:
+def is_message_valid(message: dict | None) -> bool:
+    if isinstance(message, dict) and message.get("type") is not None:
         return True
+    return False

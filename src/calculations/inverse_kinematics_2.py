@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 a1=20
 a2=20
-a3=10
 x=10
 y=20
 psi=80
@@ -22,7 +21,6 @@ delta2= -acos((pow(x,2)+pow(y,2)-(pow(a1,2)+pow(a2,2)))/(2*a1*a2))
 
 delta1=atan(y/x) - atan(a2*sin(delta2)/(a1 + a2*cos(delta2)))
 
-delta3=psi-(delta1+delta2)
 
 p1x=a1*cos(delta1)
 p1y=a1*sin(delta1)

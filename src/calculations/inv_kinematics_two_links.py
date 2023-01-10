@@ -1,6 +1,6 @@
 
 from math import *
-import matplotlib.pyplot as plt
+
 
 
 def inverse_kinematics(x, y):

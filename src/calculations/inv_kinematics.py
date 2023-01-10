@@ -1,6 +1,6 @@
 
 from math import *
-import matplotlib.pyplot as plt
+
 
 a1=20
 a2=20
@@ -41,9 +41,5 @@ print('delta1:',delta1)
 
 
 #plt.plot([p2x, x],[p2y, y])
-plt.xlim(-50,50)
-plt.ylim(-50,50)
-plt.plot([-5,5],[0,0])
-plt.plot([0, p1x],[0, p1y],[p1x, p2x],[p1y, p2y],[p2x, x],[p2y, y], marker = 'o' )
-plt.show()
+
 

@@ -1,14 +1,14 @@
 import logging
 from threading import Thread
 import time
-from calculations.inv_kinematics_two_links import inverse_kinematics
-from calculations.recasting import recasting_coordinates
-import RPi.GPIO as GPIO
+from src.calculations.inv_kinematics_two_links import inverse_kinematics
+from src.calculations.recasting import recasting_coordinates
+#import RPi.GPIO as GPIO
 from time import sleep
 
 logging.basicConfig(level=logging.DEBUG)
 
-from bluetooth.connection_broker import ConnectionBroker
+from src.bluetooth.connection_broker import ConnectionBroker
 from src.configs.config_parser import ConfigParser
 
 
@@ -58,14 +58,14 @@ class RobotCordinator:
  
 
     def move(self):
-        
+        pass
         #Thread(target=self.live_position).run()
 
-        GPIO.setmode(GPIO.BOARD)
+    #    GPIO.setmode(GPIO.BOARD)
 
-        GPIO.setup(11, GPIO.OUT)
+    #    GPIO.setup(11, GPIO.OUT)
 
-        pwm_bh=GPIO.PWM(11,50)
+    #    pwm_bh=GPIO.PWM(11,50)
     #   pwm_bv=GPIO.PWM(11,50)
     #   pwm_e=GPIO.PWM(11,50)
                     
@@ -81,9 +81,10 @@ class RobotCordinator:
     #    sleep(2)
 
     def grap(self):
-        GPIO.setmode(GPIO.BOARD)
+        pass
+    #    GPIO.setmode(GPIO.BOARD)
 
-        GPIO.setup(11, GPIO.OUT)
+     #   GPIO.setup(11, GPIO.OUT)
 
 
     def execute_movement(self, msg: dict):

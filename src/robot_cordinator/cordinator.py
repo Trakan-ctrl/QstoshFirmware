@@ -16,8 +16,8 @@ class RobotCordinator:
 
     status = {1: "idle"}
 
-    def __init__(self):
-        self.config = None
+    def __init__(self, config):
+        self.config = config
         self.broker = ConnectionBroker()
         self.robot_state = {
                         "type": "live_position",
@@ -47,7 +47,7 @@ class RobotCordinator:
     def run(self):
         self.execute_movement
         self.broker.start_broker()
-        
+        self.broker.init_config(self.config)
         
 
         while(1):

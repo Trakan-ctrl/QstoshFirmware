@@ -4,7 +4,7 @@ import time
 
 logging.basicConfig(level=logging.DEBUG)
 
-#from src.bluetooth.connection_broker import ConnectionBroker
+from src.bluetooth.connection_broker import ConnectionBroker
 from src.configs.config_parser import ConfigParser
 from src.robot_cordinator.cordinator import RobotCordinator
 
@@ -13,7 +13,8 @@ logger = logging.getLogger("main")
 
 def main():
     config = ConfigParser("settings/settings.ini")
-    robot_cordinator=RobotCordinator()
+    robot_cordinator=RobotCordinator(config)
+    robot_cordinator.run()
     #broker.init_config(config)
     
 

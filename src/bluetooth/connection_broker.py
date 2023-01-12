@@ -6,6 +6,7 @@ import logging
 from src.configs import ConfigParser
 from .bluetooth_server import BluetoothServer, ConnectionClosed, SocketClosed
 from .messages import is_message_valid
+import time
 
 logger = logging.getLogger("connection_broker")
 
@@ -28,12 +29,16 @@ class ConnectionBroker:
         self._broker_thread.start()
 
     def _broker_thread_method(self):
+     
         try:
             self.server.advertise_server()
+            print("server_advertised")
             self.server.accept_connection()
+            print("connection_accepted")
             if self.on_client_connected:
                 self.on_client_connected()
             while self._running:
+                print("broker")
                 data = self.server.recv()
                 if data:
                     try:
@@ -52,6 +57,9 @@ class ConnectionBroker:
             self.server.close()
         except Exception as e:
             logger.error(type(e), e)
+        time.sleep(1)
+            
+            
 
     def send(self, data: str):
         self.server.send(data.encode())
@@ -60,3 +68,6 @@ class ConnectionBroker:
         self._running=False
         self.server.close()
         self._broker_thread.join()
+        
+    def dane(self):
+        return self.server.dane()

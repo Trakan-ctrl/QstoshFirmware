@@ -12,6 +12,8 @@ class SocketClosed(Exception):
     pass
 
 class BluetoothServer:
+    uuid = None
+    
     def __init__(self):
         self.server_socket: BluetoothSocket = BluetoothSocket(bluetooth.RFCOMM)
         self.uuid: str                      = None
@@ -58,3 +60,6 @@ class BluetoothServer:
     def close(self):
         self.server_socket.close()
         self.client_socket.close()
+        
+    def dane(self):
+        return self.uuid

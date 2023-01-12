@@ -32,6 +32,7 @@ class RobotCordinator:
        
         self.broker.add_callback_to_topic("execute_movement", self.execute_movement)
         self.broker.add_callback_to_topic("calculate_pbm", self.calculate_points_based_movement)
+        self.broker.add_callback_to_topic("live_position,", self.cur_position)
         # dodanie callbacks
         # ustawienie parametrow poczatkowych
         #
@@ -45,15 +46,14 @@ class RobotCordinator:
         pass
 
     def run(self):
-        self.execute_movement
         self.broker.start_broker()
         self.broker.init_config(self.config)
+        print(self.broker.dane())
         
 
         while(1):
-            sleep(2)
-            print('Wykonuje sie w nieskonczonosc!!!')
-            pass    
+            print("Serwer dziala!!!")
+            sleep(2)   
 
  
 
@@ -109,10 +109,11 @@ class RobotCordinator:
 
     def live_position(self):
         print("sending position")
-        #print(str(robot_state))
+        print(str(self.robot_state))
         self.broker.send(str(self.robot_state))
 
-    def cur_position(self):
+    def cur_position(self, msg: dict):
+        print("sending position")
         self.broker.send(str(self.robot_state))
 
     def live_status(self):

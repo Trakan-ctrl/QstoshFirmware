@@ -50,6 +50,9 @@ def step_movement(angle, robot_position):
  
 answer='n'
 
+dc=angle_to_pwm(robot_position["position"]["base_horizontal_position"])
+pwm.ChangeDutyCycle(dc)
+sleep(2)
  
 while (answer=='n'):
 

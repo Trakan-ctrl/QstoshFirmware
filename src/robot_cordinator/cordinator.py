@@ -5,6 +5,8 @@ from src.calculations.inv_kinematics_two_links import inverse_kinematics
 from src.calculations.recasting import recasting_coordinates
 #import RPi.GPIO as GPIO
 from time import sleep
+from typing import Callable
+from collections import defaultdict
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -19,6 +21,7 @@ class RobotCordinator:
     def __init__(self, config):
         self.config = config
         self.broker = ConnectionBroker()
+        self.callbacks = defaultdict(list)
         self.robot_state = {
                         "type": "live_position",
                         "position": {
@@ -28,11 +31,13 @@ class RobotCordinator:
                             "grabbed": False
                         }
                      }
+        self._callback_handler: Thread = Thread(target=self.callback_handler)
+        
 
-       
-        self.broker.add_callback_to_topic("execute_movement", self.execute_movement)
-        self.broker.add_callback_to_topic("calculate_pbm", self.calculate_points_based_movement)
-        self.broker.add_callback_to_topic("live_position,", self.cur_position)
+        self.add_callback("p", self.cur_position)
+        #self.broker.add_callback_to_topic("execute_movement", self.execute_movement)
+        #self.broker.add_callback_to_topic("calculate_pbm", self.calculate_points_based_movement)
+        #self.broker.add_callback_to_topic("live_position,", self.cur_position)
         # dodanie callbacks
         # ustawienie parametrow poczatkowych
         #
@@ -46,13 +51,17 @@ class RobotCordinator:
         pass
 
     def run(self):
-        self.broker.start_broker()
-        self.broker.init_config(self.config)
-        print(self.broker.dane())
+        
+        
+        
+        #self.broker.start_broker()
+        #self.broker.init_config(self.config)
+        #print(self.broker.dane())
         
 
         while(1):
             print("Serwer dziala!!!")
+            
             sleep(2)   
 
  
@@ -112,14 +121,16 @@ class RobotCordinator:
         print(str(self.robot_state))
         self.broker.send(str(self.robot_state))
 
-    def cur_position(self, msg: dict):
+    def cur_position(self):
         print("sending position")
-        self.broker.send(str(self.robot_state))
+        print(self.robot_state)
+        #self.broker.send(str(self.robot_state))
 
     def live_status(self):
         pass
 
-    def cur_status(self, msg):
+    def cur_status(self):
+        print(self.robot_state)
         self.broker.send(str({
             "type": "live_status",
             "status": 2
@@ -143,3 +154,20 @@ class RobotCordinator:
 
     def print_con(self):
         print("Client connected!")
+        
+    def add_callback(self,topic: str ,callback: Callable[[dict], None]):
+        self.callbacks[topic].append(callback) 
+    
+    def callback_handler(self, command: str):
+        print("robot_handler, komenda:")
+        print(command)
+        for callback in self.callbacks[command]:
+                            callback()
+        
+            
+            
+        
+        
+    
+   # def start_callback_handler(self):
+   #     self._callback_handler.start()

@@ -12,9 +12,14 @@ logger = logging.getLogger("main")
 
 
 def main():
-    config = ConfigParser("settings/settings.ini")
-    robot_cordinator=RobotCordinator(config)
-    robot_cordinator.run()
+    
+    
+    while(1):
+        
+        
+    #config = ConfigParser("settings/settings.ini")
+    #robot_cordinator=RobotCordinator(config)
+    #robot_cordinator.run()
     #broker.init_config(config)
     
 

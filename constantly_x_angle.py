@@ -31,18 +31,18 @@ try:
         if delta > 0 :
             
             for step in range(int(delta/10)):
-                dc = angle_to_pwm(angle + 10*(step+1))
+                dc = angle_to_pwm(robot_position["position"]["base_horizontal_rotation"] + 10*(step+1))
                 print("Ruszam sie co 10 stopni!")
                 pwm.ChangeDutyCycle(dc)
-                sleep(2)
+                sleep(0.5)
                 
         else :
         
             for step in range(int(-(delta/10))):
-                dc = angle_to_pwm(angle - 10*(step+1))
+                dc = angle_to_pwm(robot_position["position"]["base_horizontal_rotation"] - 10*(step+1))
                 print("Ruszam sie co 10 stopni!!")
                 pwm.ChangeDutyCycle(dc)
-                sleep(2)
+                sleep(0.5)
         
         robot_position["position"]["base_horizontal_rotation"] = angle
         
@@ -53,7 +53,7 @@ try:
     answer='n'
 
     dc=angle_to_pwm(robot_position["position"]["base_horizontal_rotation"])
-    pwm.ChangeDutyCycle(dc)
+    pwm.start(dc)
     sleep(2)
     
     while (answer=='n'):

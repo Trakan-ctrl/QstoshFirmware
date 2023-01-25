@@ -1,9 +1,8 @@
 
     
 def angle_to_pwm(angle, server_version):
-        dc= 3
         
-        if server_version == 1 | server_version == 2:
+        if server_version == 1 or server_version == 2:
                 dc = 2.5+float(angle)*(10/180)
         elif server_version == 3:
                 dc = 3.5+float(angle)*(10/180)
@@ -12,6 +11,7 @@ def angle_to_pwm(angle, server_version):
 
         else:
                 print("Specified servo doesn't exist!!!")
+                dc=0
         
         return(dc)
 

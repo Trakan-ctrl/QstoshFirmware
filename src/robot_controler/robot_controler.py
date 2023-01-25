@@ -13,7 +13,7 @@ class RobotControler:
                             "type": "live_position",
                             "position": {
                                 "base_vertical_rotation": 0.,
-                                "base_horizontal_rotation": 20.,
+                                "base_horizontal_rotation": 90.,
                                 "extension_rotation": 50.,
                                 "grabbed": False
                             }}
@@ -34,26 +34,28 @@ class RobotControler:
     def move_chosen_servo(self, angle: int, chosen_servo: int):      # chosen_servo -> pin number on board   
         if chosen_servo == 1:
             print("Servo 1 wykonuje ruch!") 
-            self.step_movement(angle, self.robot_position, self.pwm_1)
+            self.step_movement(angle, self.robot_position, self.pwm_1, chosen_servo)
         elif chosen_servo == 2:
             print("Servo 2 wykonuje ruch!")
-            self.step_movement(angle, self.robot_position, self.pwm_2)
+            self.step_movement(angle, self.robot_position, self.pwm_2, chosen_servo)
         elif chosen_servo == 3:
             print("Servo 3 wykonuje ruch!")
+            # self.step_movement(angle, self.robot_position, self.pwm_3, chosen_servo)
         elif chosen_servo == 4:
             print("Servo 4 wykonuje ruch!")
+            # self.step_movement(angle, self.robot_position, self.pwm_4, chosen_servo)
     
     def move(self, chosen_servo: int):
         pass
         
-    def step_movement(self, angle, robot_position, pwm):
+    def step_movement(self, angle, robot_position, pwm, chosen_servo):
         delta = angle - robot_position["position"]["base_horizontal_rotation"]
         print("Pozycja silnika:", robot_position["position"]["base_horizontal_rotation"])
         
         if delta > 0 :
             
             for step in range(int(delta/10)):
-                dc = angle_to_pwm(robot_position["position"]["base_horizontal_rotation"] + 10*(step+1))
+                dc = angle_to_pwm(robot_position["position"]["base_horizontal_rotation"] + 10*(step+1), chosen_servo)
                 print("Ruszam sie co 10 stopni!")
                 pwm.ChangeDutyCycle(dc)
                 sleep(0.5)
@@ -61,7 +63,7 @@ class RobotControler:
         else :
         
             for step in range(int(-(delta/10))):
-                dc = angle_to_pwm(robot_position["position"]["base_horizontal_rotation"] - 10*(step+1))
+                dc = angle_to_pwm(robot_position["position"]["base_horizontal_rotation"] - 10*(step+1), chosen_servo)
                 print("Ruszam sie co 10 stopni!!")
                 pwm.ChangeDutyCycle(dc)
                 sleep(0.5)
@@ -69,11 +71,4 @@ class RobotControler:
         robot_position["position"]["base_horizontal_rotation"] = angle
         
 
-                
-                
-                
-            
-            
-            
-        
-        
+

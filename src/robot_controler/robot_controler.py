@@ -48,7 +48,7 @@ class RobotControler:
     def move(self, chosen_servo: int):
         pass
         
-    def step_movement(self, angle, robot_position, pwm, chosen_servo):
+    def step_movement(self, angle, robot_position, pwm, chosen_servo: int):
         delta = angle - robot_position["position"]["base_horizontal_rotation"]
         print("Pozycja silnika:", robot_position["position"]["base_horizontal_rotation"])
         

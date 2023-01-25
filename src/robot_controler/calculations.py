@@ -1,6 +1,6 @@
 
     
-def angle_to_pwm(angle, server_version):
+def angle_to_pwm(angle, server_version: int):
         
         if server_version == 1 or server_version == 2:
                 dc = 2.5+float(angle)*(10/180)

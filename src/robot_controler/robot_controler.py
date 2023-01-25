@@ -1,9 +1,9 @@
 from typing import Callable
 from src.robot_controler.calculations import angle_to_pwm
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 from time import sleep
-# GPIO.setmode(GPIO.BOARD)
-# GPIO.setup(11, GPIO.OUT)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(11, GPIO.OUT)
 
 
 class RobotControler:
@@ -17,24 +17,27 @@ class RobotControler:
                                 "extension_rotation": 50.,
                                 "grabbed": False
                             }}
-        # self.pwm_1 = GPIO.PWM(11,50)
-        # self.pwm_2 = GPIO.PWM(11,50)
+        self.pwm_1 = GPIO.PWM(11,50)
+        self.pwm_2 = GPIO.PWM(12,50)
         # self.pwm_3 = GPIO.PWM(11,50)
         # self.pwm_4 = GPIO.PWM(11,50)
-        # self.pwm_1.start(0)
+        self.pwm_1.start(0)
+        self.pwm_2.start(0)
         
         
     def __del__(self):
-        # GPIO.clenaup()
-        # self.pwm_1.stop()
+        GPIO.clenaup()
+        self.pwm_1.stop()
+        self.pwm_2.stop()
         pass
         
     def move_chosen_servo(self, angle: int, chosen_servo: int):      # chosen_servo -> pin number on board   
         if chosen_servo == 1:
             print("Servo 1 wykonuje ruch!") 
-            # self.step_movement(angle, self.robot_position, self.pwm_1)
+            self.step_movement(angle, self.robot_position, self.pwm_1)
         elif chosen_servo == 2:
             print("Servo 2 wykonuje ruch!")
+            self.step_movement(angle, self.robot_position, self.pwm_2)
         elif chosen_servo == 3:
             print("Servo 3 wykonuje ruch!")
         elif chosen_servo == 4:

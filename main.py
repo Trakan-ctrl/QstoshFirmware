@@ -4,9 +4,9 @@ import time
 
 logging.basicConfig(level=logging.DEBUG)
 
-from src.bluetooth.connection_broker import ConnectionBroker
-from src.configs.config_parser import ConfigParser
-from src.robot_cordinator.cordinator import RobotCordinator
+#from src.bluetooth.connection_broker import ConnectionBroker
+#from src.configs.config_parser import ConfigParser
+#from src.robot_cordinator.cordinator import RobotCordinator
 from src.robot_controler.robot_controler import RobotControler
 
 logger = logging.getLogger("main")

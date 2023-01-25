@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.OUT)
-
+GPIO.setup(12, GPIO.OUT)
 
 class RobotControler:
 
@@ -26,9 +26,9 @@ class RobotControler:
         
         
     def __del__(self):
-        GPIO.clenaup()
         self.pwm_1.stop()
         self.pwm_2.stop()
+        GPIO.cleanup()
         pass
         
     def move_chosen_servo(self, angle: int, chosen_servo: int):      # chosen_servo -> pin number on board   

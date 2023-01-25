@@ -1,5 +1,6 @@
 from typing import Callable
-from src.robot_controler.calculations import angle_to_pwm
+from src.robot_controler.calculations import angle_to_pwm, recasting_coordinates
+from src.robot_controler.inverse_kinematics import inverse_kinematics
 import RPi.GPIO as GPIO
 from time import sleep
 GPIO.setmode(GPIO.BOARD)
@@ -69,6 +70,15 @@ class RobotControler:
                 sleep(0.5)
         
         robot_position["position"]["base_horizontal_rotation"] = angle
+        
+    def point_movement(self, cor_x, cor_y, cor_z):
+        cor_x, cor_z, delta_base = recasting_coordinates(cor_x, cor_y, cor_z)
+        delta_horizontal, delta_extension = inverse_kinematics(cor_x, cor_z)
+        self.step_movement(delta_base, self.robot_position, self.pwm_1, 1)
+        # self.step_movement(delta_horizontal, self.robot_position, self.pwm_2, 1)
+        # self.step_movement(delta_extension, self.robot_position, self.pwm_3, 1)
+        
+        
         
 
 

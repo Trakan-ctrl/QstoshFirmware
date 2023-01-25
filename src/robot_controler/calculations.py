@@ -1,5 +1,12 @@
+import math
 
-    
+
+def recasting_coordinates(cor_x, cor_y, cor_z):
+    delta_base = math.atan(cor_y/cor_x)
+    x = math.sqrt(pow(cor_x, 2) + pow(cor_y, 2))
+
+    return x, cor_z, delta_base
+
 def angle_to_pwm(angle, server_version: int):
         
         if server_version == 1 or server_version == 2:

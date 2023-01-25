@@ -29,7 +29,7 @@ def main():
         
         elif order == 2:
             cor_x, cor_y, cor_z = input("Enter Euclidean space coordinates :").split()
-            robot_controler.point_movement(cor_x, cor_y, cor_z)
+            robot_controler.point_movement(int(cor_x), int(cor_y), int(cor_z))
             
         
         elif order == 3:

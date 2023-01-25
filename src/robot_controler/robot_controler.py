@@ -1,8 +1,9 @@
 from typing import Callable
-import RPi.GPIO as GPIO
+from src.robot_controler.calculations import angle_to_pwm
+#import RPi.GPIO as GPIO
 from time import sleep
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(11, GPIO.OUT)
+# GPIO.setmode(GPIO.BOARD)
+# GPIO.setup(11, GPIO.OUT)
 
 
 class RobotControler:
@@ -16,13 +17,22 @@ class RobotControler:
                                 "extension_rotation": 50.,
                                 "grabbed": False
                             }}
+        # self.pwm_1 = GPIO.PWM(11,50)
+        # self.pwm_2 = GPIO.PWM(11,50)
+        # self.pwm_3 = GPIO.PWM(11,50)
+        # self.pwm_4 = GPIO.PWM(11,50)
+        # self.pwm_1.start(0)
+        
+        
     def __del__(self):
-        GPIO.clenaup()
+        # GPIO.clenaup()
+        # self.pwm_1.stop()
+        pass
         
-        
-    def move_chosen_servo(self, chosen_servo: int):      # chosen_servo -> pin number on board   
+    def move_chosen_servo(self, angle: int, chosen_servo: int):      # chosen_servo -> pin number on board   
         if chosen_servo == 1:
-            print("Servo 1 wykonuje ruch!")    
+            print("Servo 1 wykonuje ruch!") 
+            # self.step_movement(angle, self.robot_position, self.pwm_1)
         elif chosen_servo == 2:
             print("Servo 2 wykonuje ruch!")
         elif chosen_servo == 3:
@@ -31,36 +41,30 @@ class RobotControler:
             print("Servo 4 wykonuje ruch!")
     
     def move(self, chosen_servo: int):
+        pass
         
-       
-
-        pwm=GPIO.PWM(11,50)
-
-
-        def AngleToPwm(angle):
-                dc=1.5+angle*(10/180)
-                return(dc)
+    def step_movement(self, angle, robot_position, pwm):
+        delta = angle - robot_position["position"]["base_horizontal_rotation"]
+        print("Pozycja silnika:", robot_position["position"]["base_horizontal_rotation"])
         
-        answer='n'
-
-        
-        while (answer=='y'):
-
-
+        if delta > 0 :
             
-
-            angle=input('Set the turn angle')
-
-            dc=AngleToPwm(angle)
-
-
-            pwm.start(1.5)
-            sleep(3)
-
-            pwm.ChangeDutyCycle(dc)
-            sleep(2)
-            
-            answer=input('Do you want to close programme?(y,n)')
+            for step in range(int(delta/10)):
+                dc = angle_to_pwm(robot_position["position"]["base_horizontal_rotation"] + 10*(step+1))
+                print("Ruszam sie co 10 stopni!")
+                pwm.ChangeDutyCycle(dc)
+                sleep(0.5)
+                
+        else :
+        
+            for step in range(int(-(delta/10))):
+                dc = angle_to_pwm(robot_position["position"]["base_horizontal_rotation"] - 10*(step+1))
+                print("Ruszam sie co 10 stopni!!")
+                pwm.ChangeDutyCycle(dc)
+                sleep(0.5)
+        
+        robot_position["position"]["base_horizontal_rotation"] = angle
+        
 
                 
                 

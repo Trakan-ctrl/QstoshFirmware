@@ -2,7 +2,7 @@ import math
 
 
 def recasting_coordinates(cor_x, cor_y, cor_z):
-    delta_base = math.atan(cor_y/cor_x)
+    delta_base = math.atan(cor_y/cor_x)*(180/math.pi)
     x = math.sqrt(pow(cor_x, 2) + pow(cor_y, 2))
 
     return x, cor_z, delta_base

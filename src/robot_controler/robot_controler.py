@@ -73,7 +73,11 @@ class RobotControler:
         
     def point_movement(self, cor_x, cor_y, cor_z):
         cor_x, cor_z, delta_base = recasting_coordinates(cor_x, cor_y, cor_z)
-        #delta_horizontal, delta_extension = inverse_kinematics(cor_x, cor_z)
+<<<<<<< HEAD
+=======
+        print(delta_base)
+>>>>>>> 3d189cb5758379d415bd609e375d8bf09eaec105
+        delta_horizontal, delta_extension = inverse_kinematics(cor_x, cor_z)
         self.step_movement(delta_base, self.robot_position, self.pwm_1, 1)
         # self.step_movement(delta_horizontal, self.robot_position, self.pwm_2, 1)
         # self.step_movement(delta_extension, self.robot_position, self.pwm_3, 1)

@@ -3,6 +3,7 @@ from math import *
 
 
 
+
 def inverse_kinematics(x, y):
 
         
@@ -28,9 +29,5 @@ def inverse_kinematics(x, y):
         #print('p2x, p2y',p2x,p2y)
 
 
-        #plt.xlim(-50,50)
-        ##plt.ylim(-50,50)
-        #plt.plot([-5,5],[0,0])
-        #plt.plot([0, p1x],[0, p1y],[p1x, x],[p1y, y], marker = 'o' )
-        #plt.show()
+        
         return delta2, delta3

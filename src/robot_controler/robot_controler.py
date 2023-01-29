@@ -21,17 +21,20 @@ class RobotControler:
                                 "grabbed": False
                             }}
         self.pwm_1 = GPIO.PWM(11,50)
-        self.pwm_2 = GPIO.PWM(12,50)
-        self.pwm_3 = GPIO.PWM(13,50)
-        # self.pwm_4 = GPIO.PWM(11,50)
+        # self.pwm_2 = GPIO.PWM(12,50)
+        # self.pwm_3 = GPIO.PWM(13,50)
+        self.pwm_4 = GPIO.PWM(15,50)
         self.pwm_1.start(0)
-        self.pwm_2.start(0)
+        # self.pwm_2.start(0)
+        # self.pwm_3.start(0)
+        self.pwm_4.start(0)
         
         
     def __del__(self):
         self.pwm_1.stop()
-        self.pwm_2.stop()
-        self.pwm_3.stop()
+        # self.pwm_2.stop()
+        # self.pwm_3.stop()
+        self.pwm_4.stop()
         GPIO.cleanup()
         
     def move_chosen_servo(self, angle: int, chosen_servo: int):      # chosen_servo -> pin number on board   
@@ -40,13 +43,13 @@ class RobotControler:
             self.step_movement(angle, self.robot_position, self.pwm_1, chosen_servo)
         elif chosen_servo == 2:
             print("Servo 2 wykonuje ruch!")
-            self.step_movement(angle, self.robot_position, self.pwm_2, chosen_servo)
+            # self.step_movement(angle, self.robot_position, self.pwm_2, chosen_servo)
         elif chosen_servo == 3:
             print("Servo 3 wykonuje ruch!")
-            self.step_movement(angle, self.robot_position, self.pwm_3, chosen_servo)
+            # self.step_movement(angle, self.robot_position, self.pwm_3, chosen_servo)
         elif chosen_servo == 4:
             print("Servo 4 wykonuje ruch!")
-            # self.step_movement(angle, self.robot_position, self.pwm_4, chosen_servo)
+            self.step_movement(angle, self.robot_position, self.pwm_4, chosen_servo)
     
     def move(self, chosen_servo: int):
         pass
@@ -78,8 +81,8 @@ class RobotControler:
         print(delta_base)
         delta_horizontal, delta_extension = inverse_kinematics(cor_x, cor_z)
         self.step_movement(delta_base, self.robot_position, self.pwm_1, 1)
-        self.step_movement(delta_horizontal, self.robot_position, self.pwm_2, 2)
-        self.step_movement(delta_extension, self.robot_position, self.pwm_3, 3)
+        # self.step_movement(delta_horizontal, self.robot_position, self.pwm_2, 2)
+        # self.step_movement(delta_extension, self.robot_position, self.pwm_3, 3)
         
     def concurrent_movement(self, servo_engines: dict):
         for servo in servo_engines:

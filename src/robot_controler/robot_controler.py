@@ -86,6 +86,7 @@ class RobotControler:
         # self.step_movement(delta_extension, self.robot_position, self.pwm_3, 3)
         
     def concurrent_movement(self, servo_engines: dict):
+        print("Concurrent movement of servos: ", servo_engines)
         for servo in servo_engines:
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
                 for engine in servo_engines:

@@ -74,7 +74,7 @@ class RobotControler:
                 print("Ruszam sie co 10 stopni!!")
                 pwm.ChangeDutyCycle(dc)
                 sleep(0.5)
-        
+        print(dc)
         robot_position["position"]["base_horizontal_rotation"] = angle
         
     def point_movement(self, cor_x, cor_y, cor_z):

@@ -105,19 +105,13 @@ class RobotControler:
 
     def reset_position(self):
         # add rest of the servos
-            self.robot_position = {
-                            "type": "live_position",
-                            "position": {
-                                "base_vertical_rotation": 90.,
-                                "base_horizontal_rotation": 90.,
-                                "extension_rotation": 90.,
-                                "grabbed": False
-                            }}
             
-            dc = angle_to_pwm(self.robot_position["position"][self.servo_dictionary[1]], 1)
+            dc = angle_to_pwm(90, 1)
             self.pwm_1.ChangeDutyCycle(dc)
-            dc = angle_to_pwm(self.robot_position["position"][self.servo_dictionary[4]], 4)
+            dc = angle_to_pwm(90, 4)
             self.pwm_4.ChangeDutyCycle(dc)
+            
+            
             
             
             

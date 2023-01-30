@@ -14,6 +14,7 @@ logger = logging.getLogger("main")
 
 def main():
     robot_controler = RobotControler()
+    robot_controler.reset_position()
     
     while(1):
         order= int(input("""Choose one of three options: 

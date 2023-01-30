@@ -87,10 +87,9 @@ class RobotControler:
         
     def concurrent_movement(self, servo_engines: dict):
         print("Concurrent movement of servos: ", servo_engines)
-        for servo in servo_engines:
-            with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-                for engine in servo_engines:
-                    executor.submit(self.move_chosen_servo, engine, servo_engines[engine])
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+            for engine in servo_engines:
+                executor.submit(self.move_chosen_servo, engine, servo_engines[engine])
 
         
         

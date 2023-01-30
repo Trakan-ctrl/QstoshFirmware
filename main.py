@@ -19,25 +19,30 @@ def main():
         order= int(input("""Choose one of three options: 
                     (1) one specified servo move, 
                     (2) move to specified point, 
-                    (3) run sequence manager
-                    (4) close the programme"""))
+                    (3) run sequence manager,
+                    (4) reset position,
+                    (5) close the programme"""))
         
-        if order == 1:
+        if order == 1 :
             chosen_servo = int(input("Choose which servo should move :"))
             angle = int(input("What angle the servo should rotate to? :"))
             robot_controler.move_chosen_servo(angle, chosen_servo)
         
-        elif order == 2:
+        elif order == 2 :
             cor_x, cor_y, cor_z = input("Enter Euclidean space coordinates :").split()
             robot_controler.point_movement(int(cor_x), int(cor_y), int(cor_z))
             
         
-        elif order == 3:
+        elif order == 3 :
             print("Moving concurrently")
             # servo = input("Which servo should move concurrently?").split()
             # servo = [eval(i) for i in servo]
             robot_controler.concurrent_movement( {1: 120, 4: 70})
         
+        elif order == 4 :
+            print("Reseting position")
+            robot_controler.reset_position
+            
         else:
             break
    

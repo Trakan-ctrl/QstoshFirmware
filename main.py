@@ -40,7 +40,7 @@ def main():
             robot_controler.concurrent_movement( {1: 120, 4: 70})
         
         elif order == 4 :
-            robot_controler.reset_position
+            robot_controler.reset_position()
             
         else:
             break

@@ -33,7 +33,10 @@ def main():
             
         
         elif order == 3:
-            pass
+            print("Moving concurrently")
+            servo = input("Which servo should move concurrently?").split()
+            servo = [eval(i) for i in servo]
+            robot_controler.concurrent_movement( {1: 120, 4: 70})
         
         else:
             break

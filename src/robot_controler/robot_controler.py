@@ -105,7 +105,7 @@ class RobotControler:
 
     def reset_position(self):
         # add rest of the servos
-            
+            print("Reseting position")
             dc = angle_to_pwm(90, 1)
             self.pwm_1.ChangeDutyCycle(dc)
             dc = angle_to_pwm(90, 4)

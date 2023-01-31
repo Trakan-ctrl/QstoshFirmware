@@ -23,7 +23,8 @@ def main():
                     (3) run sequence manager,
                     (4) reset position,
                     (5) show current position,
-                    (6) close the programme"""))
+                    (6) save position,
+                    (7) close the programme"""))
         
         if order == 1 :
             chosen_servo = int(input("Choose which servo should move :"))
@@ -46,7 +47,9 @@ def main():
         
         elif order == 5 :
             print(robot_controler.current_position())
-            
+        
+        elif order == 6:
+            robot_controler.save_position()
         else:
             break
    

@@ -114,6 +114,9 @@ class RobotControler:
             self.robot_position["position"][self.servo_dictionary[1]] = 90.
             self.robot_position["position"][self.servo_dictionary[4]] = 90.
             
+    def current_position(self):
+        return self.robot_position
+            
             
             
             

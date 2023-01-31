@@ -19,7 +19,7 @@ class RobotControler:
                                 "base_vertical_rotation": 90.,
                                 "base_horizontal_rotation": 90.,
                                 "extension_rotation": 90.,
-                                "grabbed": False
+                                "grabbed": 90.
                             }}
         self.servo_dictionary = {
                             1 : "base_vertical_rotation",

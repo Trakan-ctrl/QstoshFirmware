@@ -1,6 +1,7 @@
 from typing import Callable
 from src.robot_controler.calculations import angle_to_pwm, recasting_coordinates
 from src.robot_controler.inverse_kinematics import inverse_kinematics
+from src.robot_controler.robot_database import RobotDatabase
 import RPi.GPIO as GPIO
 import concurrent.futures
 from time import sleep
@@ -13,6 +14,7 @@ GPIO.setup(15, GPIO.OUT)
 class RobotControler:
 
     def __init__(self):
+        self.robot_database = RobotDatabase()
         self.robot_position = {
                             "type": "live_position",
                             "position": {
@@ -117,7 +119,8 @@ class RobotControler:
     def current_position(self):
         return self.robot_position
             
-            
+    def save_position(self):
+        self.robot_database.write_to_database(self.robot_position)
             
             
             

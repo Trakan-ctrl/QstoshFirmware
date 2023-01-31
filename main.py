@@ -14,6 +14,7 @@ logger = logging.getLogger("main")
 
 def main():
     robot_controler = RobotControler()
+    robot_controler.reset_position()
     
     while(1):
         order= int(input("""Choose one of three options: 
@@ -21,7 +22,8 @@ def main():
                     (2) move to specified point, 
                     (3) run sequence manager,
                     (4) reset position,
-                    (5) close the programme"""))
+                    (5) show current position,
+                    (6) close the programme"""))
         
         if order == 1 :
             chosen_servo = int(input("Choose which servo should move :"))
@@ -41,6 +43,9 @@ def main():
         
         elif order == 4 :
             robot_controler.reset_position()
+        
+        elif order == 5 :
+            print(robot_controler.current_position())
             
         else:
             break

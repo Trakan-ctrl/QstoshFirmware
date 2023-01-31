@@ -81,7 +81,7 @@ class RobotControler:
                 pwm.ChangeDutyCycle(dc)
                 sleep(0.5)
                 
-        robot_position["position"][self.servo_dictionary[chosen_servo]] = angle
+        self.robot_position["position"][self.servo_dictionary[chosen_servo]] = angle
         
     def point_movement(self, cor_x, cor_y, cor_z):
         cor_x, cor_z, delta_base = recasting_coordinates(cor_x, cor_y, cor_z)
@@ -104,12 +104,18 @@ class RobotControler:
         
 
     def reset_position(self):
-        # add rest of the servos
+        # add restart to the starting position of the servos of the servos
             print("Reseting position")
             dc = angle_to_pwm(90, 1)
             self.pwm_1.ChangeDutyCycle(dc)
             dc = angle_to_pwm(90, 4)
             self.pwm_4.ChangeDutyCycle(dc)
+                    
+            self.robot_position["position"][self.servo_dictionary[1]] = 90.
+            self.robot_position["position"][self.servo_dictionary[4]] = 90.
+            
+    def current_position(self):
+        return self.robot_position
             
             
             

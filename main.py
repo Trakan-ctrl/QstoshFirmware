@@ -70,7 +70,8 @@ def main():
             robot_movement.clear() 
         elif order == 7:
             name = input("Give the name of the sequence: ")
-            robot_database.read_from_database(name)
+            # robot_database.read_from_database(name)
+            robot_controler.program_movement(name)
         else:
             break
    

@@ -95,7 +95,7 @@ class RobotControler:
         
     def concurrent_movement(self, servo_engines: dict):
         print("Concurrent movement of servos: ", servo_engines)
-        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
             for engine in servo_engines:
                 print("Starting thread: ", engine)
                 # executor.submit(self.hello_thread)
@@ -118,9 +118,22 @@ class RobotControler:
             
     def current_position(self):
         return self.robot_position
+
+    def program_movement(self, name):
+        robot_sequence = self.robot_database.read_from_database(name)
+        for key_robot_sequence in robot_sequence:
+            if key_robot_sequence != 'name': 
+                
+                self.concurrent_movement(robot_sequence[key_robot_sequence])
+        
+            pass
+        
+        pass
             
     def save_position(self, robot_sequence: list):
         self.robot_database.write_to_database(robot_sequence)
+        
+    
             
             
             

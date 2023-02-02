@@ -21,7 +21,8 @@ class RobotDatabase():
     def read_from_database(self, name):
         with open(f'{name}.json') as json_file:
             data = json.load(json_file)
-            print(data)
+            # print(data)
+        return data
         # for line in self.robot_database:
         #     print(line, end="")
         #     self.robot_position = line

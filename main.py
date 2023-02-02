@@ -28,7 +28,8 @@ def main():
                     (4) reset position,
                     (5) show current position,
                     (6) save position,
-                    (7) close the programme"""))
+                    (7) show json file
+                    (8) close the programme"""))
         
         if order == 1 :
             chosen_servo = int(input("Choose which servo should move :"))
@@ -59,7 +60,8 @@ def main():
                     key_robot_movement = input("Which servo should move? :")
                     angle = input("What angle should servo turn to? :")
                     robot_movement[key_robot_movement] = angle
-                    
+                
+                print(robot_movement)    
                 robot_sequence[key_robot_sequence] = robot_movement
                 key_robot_sequence += 1
                 robot_movement.clear()    

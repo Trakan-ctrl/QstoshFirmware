@@ -8,13 +8,17 @@ logging.basicConfig(level=logging.DEBUG)
 #from src.configs.config_parser import ConfigParser
 #from src.robot_cordinator.cordinator import RobotCordinator
 from src.robot_controler.robot_controler import RobotControler
+from src.robot_controler.robot_database import RobotDatabase
 
 logger = logging.getLogger("main")
 
 
 def main():
     robot_controler = RobotControler()
+    robot_database = RobotDatabase()
     robot_controler.reset_position()
+    robot_sequence = dict()
+    robot_movement = dict()
     
     while(1):
         order= int(input("""Choose one of three options: 
@@ -49,7 +53,19 @@ def main():
             print(robot_controler.current_position())
         
         elif order == 6:
-            robot_controler.save_position()
+            key_robot_sequence = 1
+            while ('yes' ==  input("Do you want to write another sequence?")): 
+                while ('yes' ==  input("Do you want to continue?")):
+                    key_robot_movement = input("Which servo should move? :")
+                    angle = input("What angle should servo turn to? :")
+                    robot_movement[key_robot_movement][angle]
+                    
+                robot_sequence[key_robot_sequence][robot_movement]
+                key_robot_sequence += 1
+                robot_movement.clear()    
+            name=input("Name of the sequence? :")  
+            robot_sequence["nazwa"][name]
+            robot_database.write_to_database(robot_sequence)
         else:
             break
    

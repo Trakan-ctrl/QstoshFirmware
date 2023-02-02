@@ -119,8 +119,8 @@ class RobotControler:
     def current_position(self):
         return self.robot_position
             
-    def save_position(self):
-        self.robot_database.write_to_database(self.robot_position)
+    def save_position(self, robot_sequence: list):
+        self.robot_database.write_to_database(robot_sequence)
             
             
             

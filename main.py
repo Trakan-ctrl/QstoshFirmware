@@ -64,7 +64,7 @@ def main():
                 key_robot_sequence += 1
                 robot_movement.clear()    
             name=input("Name of the sequence? :")  
-            robot_sequence["nazwa"] = name
+            robot_sequence["name"] = name
             robot_database.write_to_database(robot_sequence)
         else:
             break

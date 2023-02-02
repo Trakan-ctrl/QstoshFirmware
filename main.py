@@ -66,6 +66,7 @@ def main():
         
             name=input("Name of the sequence? :")  
             robot_sequence["name"] = name
+            print(robot_sequence)
             robot_database.write_to_database(robot_sequence)
             robot_movement.clear() 
         elif order == 7:

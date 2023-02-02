@@ -61,10 +61,11 @@ def main():
                     angle = input("What angle should servo turn to? :")
                     robot_movement[key_robot_movement] = angle
                 
-                print(robot_movement)    
                 robot_sequence[key_robot_sequence] = robot_movement
                 key_robot_sequence += 1
+                print(robot_sequence)
                 robot_movement.clear()    
+                print(robot_sequence)
             name=input("Name of the sequence? :")  
             robot_sequence["name"] = name
             robot_database.write_to_database(robot_sequence)

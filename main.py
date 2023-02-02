@@ -62,7 +62,7 @@ def main():
                     robot_movement[key_robot_movement] = angle
                 
                 robot_sequence[key_robot_sequence] = robot_movement
-                key_robot_sequence += 1
+                key_robot_sequence = key_robot_sequence + 1
         
             name=input("Name of the sequence? :")  
             robot_sequence["name"] = name

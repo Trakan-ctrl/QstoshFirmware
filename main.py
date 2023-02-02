@@ -1,7 +1,7 @@
 import logging
 from threading import Thread
 import time
-
+from collections import defaultdict
 logging.basicConfig(level=logging.DEBUG)
 
 #from src.bluetooth.connection_broker import ConnectionBroker
@@ -61,7 +61,7 @@ def main():
                     angle = input("What angle should servo turn to? :")
                     robot_movement[key_robot_movement] = angle
                 
-                robot_sequence[key_robot_sequence] = robot_movement
+                robot_sequence[key_robot_sequence] = dict(robot_movement)
                 key_robot_sequence = key_robot_sequence + 1
         
             name=input("Name of the sequence? :")  

@@ -58,13 +58,13 @@ def main():
                 while ('yes' ==  input("Do you want to continue?")):
                     key_robot_movement = input("Which servo should move? :")
                     angle = input("What angle should servo turn to? :")
-                    robot_movement[key_robot_movement][angle]
+                    robot_movement[key_robot_movement] = angle
                     
-                robot_sequence[key_robot_sequence][robot_movement]
+                robot_sequence[key_robot_sequence] = robot_movement
                 key_robot_sequence += 1
                 robot_movement.clear()    
             name=input("Name of the sequence? :")  
-            robot_sequence["nazwa"][name]
+            robot_sequence["nazwa"] = name
             robot_database.write_to_database(robot_sequence)
         else:
             break

@@ -66,6 +66,9 @@ def main():
             name=input("Name of the sequence? :")  
             robot_sequence["name"] = name
             robot_database.write_to_database(robot_sequence)
+        elif order == 7:
+            name = input("Give the name of the sequence: ")
+            robot_database.read_from_database(name)
         else:
             break
    

@@ -43,9 +43,10 @@ def main():
         
         elif order == 3 :
             print("Moving concurrently")
-            # servo = input("Which servo should move concurrently?").split()
-            # servo = [eval(i) for i in servo]
-            robot_controler.concurrent_movement( {1: 120, 4: 70})
+            servos_action = input("Which servos should move concurrently?").split()
+            servos = servos_action[::2]
+            servos_angles = servos_action[1::2]
+            robot_controler.concurrent_movement( dict(zip(servos, servos_angles)))
         
         elif order == 4 :
             robot_controler.reset_position()

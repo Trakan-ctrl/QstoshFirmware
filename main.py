@@ -24,11 +24,11 @@ def main():
         order= int(input("""Choose one of three options: 
                     (1) one specified servo move, 
                     (2) move to specified point, 
-                    (3) run sequence manager,
+                    (3) run servos conccurently,
                     (4) reset position,
                     (5) show current position,
-                    (6) save position,
-                    (7) show json file
+                    (6) save sequence,
+                    (7) perform chosen sequence
                     (8) close the programme"""))
         
         if order == 1 :

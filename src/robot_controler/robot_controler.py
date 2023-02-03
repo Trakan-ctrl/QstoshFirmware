@@ -19,7 +19,7 @@ class RobotControler:
                             "type": "live_position",
                             "position": {
                                 "base_vertical_rotation": 90.,
-                                "base_horizontal_rotation": 90.,
+                                "base_horizontal_rotation": 70.,
                                 "extension_rotation": 90.,
                                 "grabbed": 90.
                             }}
@@ -116,7 +116,7 @@ class RobotControler:
             self.pwm_4.ChangeDutyCycle(dc)
                     
             self.robot_position["position"][self.servo_dictionary[1]] = 90.
-            self.robot_position["position"][self.servo_dictionary[2]] = 90.
+            self.robot_position["position"][self.servo_dictionary[2]] = 70.
             self.robot_position["position"][self.servo_dictionary[4]] = 90.
             
     def current_position(self):

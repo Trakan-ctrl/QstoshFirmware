@@ -99,7 +99,7 @@ class RobotControler:
             for engine in servo_engines:
                 print("Starting thread: ", engine)
                 # executor.submit(self.hello_thread)
-                executor.submit(self.move_chosen_servo, servo_engines[engine], engine)
+                executor.submit(self.move_chosen_servo, int(servo_engines[engine]), int(engine))
 
     def hello_thread(self):
         print("Hello!!!")

@@ -117,10 +117,10 @@ class RobotControler:
             dc = angle_to_pwm(90, 4)
             self.pwm_4.ChangeDutyCycle(dc)
                     
-            self.robot_position["position"][self.servo_dictionary[1]] = 90.
-            self.robot_position["position"][self.servo_dictionary[2]] = 70.
-            self.robot_position["position"][self.servo_dictionary[3]] = 90.
-            self.robot_position["position"][self.servo_dictionary[4]] = 90.
+            self.robot_position["position"][self.servo_dictionary[1]] = 90
+            self.robot_position["position"][self.servo_dictionary[2]] = 70
+            self.robot_position["position"][self.servo_dictionary[3]] = 90
+            self.robot_position["position"][self.servo_dictionary[4]] = 90
             
     def current_position(self):
         return self.robot_position

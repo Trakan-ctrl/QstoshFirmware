@@ -8,7 +8,7 @@ from time import sleep
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11, GPIO.OUT)
-# GPIO.setup(12, GPIO.OUT)
+GPIO.setup(12, GPIO.OUT)
 # GPIO.setup(13, GPIO.OUT)
 GPIO.setup(15, GPIO.OUT)
 class RobotControler:
@@ -30,18 +30,18 @@ class RobotControler:
                             4 : "grabbed"
         }
         self.pwm_1 = GPIO.PWM(11,50)
-        # self.pwm_2 = GPIO.PWM(12,50)
+        self.pwm_2 = GPIO.PWM(12,50)
         # self.pwm_3 = GPIO.PWM(13,50)
         self.pwm_4 = GPIO.PWM(15,50)
         self.pwm_1.start(0)
-        # self.pwm_2.start(0)
+        self.pwm_2.start(0)
         # self.pwm_3.start(0)
         self.pwm_4.start(0)
         
         
     def __del__(self):
         self.pwm_1.stop()
-        # self.pwm_2.stop()
+        self.pwm_2.stop()
         # self.pwm_3.stop()
         self.pwm_4.stop()
         GPIO.cleanup()
@@ -52,7 +52,7 @@ class RobotControler:
             self.step_movement(angle, self.robot_position, self.pwm_1, chosen_servo)
         elif chosen_servo == 2:
             print("Servo 2 wykonuje ruch!")
-            # self.step_movement(angle, self.robot_position, self.pwm_2, chosen_servo)
+            self.step_movement(angle, self.robot_position, self.pwm_2, chosen_servo)
         elif chosen_servo == 3:
             print("Servo 3 wykonuje ruch!")
             # self.step_movement(angle, self.robot_position, self.pwm_3, chosen_servo)
@@ -110,10 +110,13 @@ class RobotControler:
             print("Reseting position")
             dc = angle_to_pwm(90, 1)
             self.pwm_1.ChangeDutyCycle(dc)
+            dc = angle_to_pwm(90, 2)
+            self.pwm_2.ChangeDutyCycle(dc)
             dc = angle_to_pwm(90, 4)
             self.pwm_4.ChangeDutyCycle(dc)
                     
             self.robot_position["position"][self.servo_dictionary[1]] = 90.
+            self.robot_position["position"][self.servo_dictionary[2]] = 90.
             self.robot_position["position"][self.servo_dictionary[4]] = 90.
             
     def current_position(self):

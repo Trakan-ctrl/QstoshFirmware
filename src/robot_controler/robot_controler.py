@@ -111,8 +111,8 @@ class RobotControler:
             print("Reseting position")
             self.step_movement(70, self.robot_position, self.pwm_1, 1)
             self.step_movement(90, self.robot_position, self.pwm_2, 2)
-            self.step_movement(90, self.robot_position, self.pwm_1, 3)
-            self.step_movement(90, self.robot_position, self.pwm_1, 4)
+            self.step_movement(120, self.robot_position, self.pwm_3, 3)
+            self.step_movement(90, self.robot_position, self.pwm_4, 4)
                     
             
     def current_position(self):

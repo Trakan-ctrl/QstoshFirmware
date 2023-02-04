@@ -16,7 +16,7 @@ logger = logging.getLogger("main")
 def main():
     robot_controler = RobotControler()
     robot_database = RobotDatabase()
-    robot_controler.reset_position()
+    # robot_controler.reset_position()
     robot_sequence = dict()
     robot_movement = dict()
     

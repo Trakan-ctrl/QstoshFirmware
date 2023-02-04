@@ -73,7 +73,7 @@ class RobotControler:
                 dc = angle_to_pwm(robot_position["position"][self.servo_dictionary[chosen_servo]] + 10*(step+1), chosen_servo)
                 print("Ruszam sie co 10 stopni!")
                 pwm.ChangeDutyCycle(dc)
-                sleep(0.5)
+                sleep(1)
                 
         else :
         
@@ -81,7 +81,7 @@ class RobotControler:
                 dc = angle_to_pwm(robot_position["position"][self.servo_dictionary[chosen_servo]] - 10*(step+1), chosen_servo)
                 print("Ruszam sie co 10 stopni!!")
                 pwm.ChangeDutyCycle(dc)
-                sleep(0.5)
+                sleep(1)
                 
         self.robot_position["position"][self.servo_dictionary[chosen_servo]] = angle
         

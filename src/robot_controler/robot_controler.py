@@ -40,12 +40,12 @@ class RobotControler:
         
         
     def __del__(self):
+        self.reset_position()
         self.pwm_1.stop()
         self.pwm_2.stop()
         self.pwm_3.stop()
         self.pwm_4.stop()
-        GPIO.cleanup()
-        self.reset_position()
+        GPIO.cleanup()   
         
     def move_chosen_servo(self, angle: int, chosen_servo: int):      # chosen_servo -> pin number on board   
         if chosen_servo == 1:

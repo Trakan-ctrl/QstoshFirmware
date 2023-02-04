@@ -18,7 +18,7 @@ def angle_to_pwm(angle, server_version: int):
 
         else:
                 print("Specified servo doesn't exist!!!")
-                dc=0
+                dc = 0
         
         return(dc)
 

@@ -8,6 +8,7 @@ class RobotDatabase():
     
     def __dell__(self):
         pass
+    
     def write_to_database(self, robot_sequence):
         
         json_string = json.dumps(robot_sequence)

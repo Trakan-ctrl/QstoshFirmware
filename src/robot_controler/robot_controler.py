@@ -108,19 +108,11 @@ class RobotControler:
     def reset_position(self):
         # add restart to the starting position of the servos of the servos
             print("Reseting position")
-            dc = angle_to_pwm(90, 1)
-            self.pwm_1.ChangeDutyCycle(dc)
-            dc = angle_to_pwm(70, 2)
-            self.pwm_2.ChangeDutyCycle(dc)
-            dc = angle_to_pwm(90, 3)
-            self.pwm_3.ChangeDutyCycle(dc)
-            dc = angle_to_pwm(90, 4)
-            self.pwm_4.ChangeDutyCycle(dc)
+            self.step_movement(70, self.robot_position, self.pwm_1, 1)
+            self.step_movement(90, self.robot_position, self.pwm_2, 2)
+            self.step_movement(90, self.robot_position, self.pwm_1, 3)
+            self.step_movement(90, self.robot_position, self.pwm_1, 4)
                     
-            self.robot_position["position"][self.servo_dictionary[1]] = 90
-            self.robot_position["position"][self.servo_dictionary[2]] = 70
-            self.robot_position["position"][self.servo_dictionary[3]] = 90
-            self.robot_position["position"][self.servo_dictionary[4]] = 90
             
     def current_position(self):
         return self.robot_position

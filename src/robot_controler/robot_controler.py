@@ -20,7 +20,7 @@ class RobotControler:
                             "position": {
                                 "base_vertical_rotation": 90.,
                                 "base_horizontal_rotation": 70.,
-                                "extension_rotation": 90.,
+                                "extension_rotation": 120.,
                                 "grabbed": 90.
                             }}
         self.servo_dictionary = {

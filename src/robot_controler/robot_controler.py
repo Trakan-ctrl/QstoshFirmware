@@ -113,7 +113,7 @@ class RobotControler:
             dc = angle_to_pwm(70, 2)
             self.pwm_2.ChangeDutyCycle(dc)
             dc = angle_to_pwm(90, 3)
-            self.pwm_4.ChangeDutyCycle(dc)
+            self.pwm_3.ChangeDutyCycle(dc)
             dc = angle_to_pwm(90, 4)
             self.pwm_4.ChangeDutyCycle(dc)
                     

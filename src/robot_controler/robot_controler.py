@@ -18,8 +18,8 @@ class RobotControler:
         self.robot_position = {
                             "type": "live_position",
                             "position": {
-                                "base_vertical_rotation": 90.,
-                                "base_horizontal_rotation": 70.,
+                                "base_vertical_rotation": 70.,
+                                "base_horizontal_rotation": 90.,
                                 "extension_rotation": 120.,
                                 "grabbed": 90.
                             }}
@@ -131,6 +131,8 @@ class RobotControler:
             
     def save_position(self, robot_sequence: list):
         self.robot_database.write_to_database(robot_sequence)
+        
+    
         
     
             

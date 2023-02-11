@@ -78,7 +78,7 @@ class RobotControler:
                 
         else :
         
-            for step in range(int(-(delta/1))):
+            for step in range(int(-(delta/2))):
                 dc = angle_to_pwm(robot_position["position"][self.servo_dictionary[chosen_servo]] - 2*(step+1), chosen_servo)
                 print("Ruszam sie co 2 stopien!!")
                 pwm.ChangeDutyCycle(dc)

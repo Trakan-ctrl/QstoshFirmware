@@ -70,17 +70,17 @@ class RobotControler:
         
         if delta > 0 :
             
-            for step in range(int(delta/5)):
-                dc = angle_to_pwm(robot_position["position"][self.servo_dictionary[chosen_servo]] + 5*(step+1), chosen_servo)
-                print("Ruszam sie co 5 stopni!")
+            for step in range(int(delta/1)):
+                dc = angle_to_pwm(robot_position["position"][self.servo_dictionary[chosen_servo]] + 1*(step+1), chosen_servo)
+                print("Ruszam sie co 1 stopien!")
                 pwm.ChangeDutyCycle(dc)
                 sleep(0.5)
                 
         else :
         
-            for step in range(int(-(delta/5))):
-                dc = angle_to_pwm(robot_position["position"][self.servo_dictionary[chosen_servo]] - 5*(step+1), chosen_servo)
-                print("Ruszam sie co 5 stopni!!")
+            for step in range(int(-(delta/1))):
+                dc = angle_to_pwm(robot_position["position"][self.servo_dictionary[chosen_servo]] - 1*(step+1), chosen_servo)
+                print("Ruszam sie co 1 stopien!!")
                 pwm.ChangeDutyCycle(dc)
                 sleep(0.5)
                 

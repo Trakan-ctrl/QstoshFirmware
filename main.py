@@ -29,7 +29,8 @@ def main():
                     (5) show current position,
                     (6) save sequence,
                     (7) perform chosen sequence
-                    (8) close the programme"""))
+                    (8) close the programme
+                    (9) hard reset"""))
         
         if order == 1 :
             chosen_servo = int(input("Choose which servo should move :"))
@@ -74,6 +75,8 @@ def main():
             name = input("Give the name of the sequence: ")
             # robot_database.read_from_database(name)
             robot_controler.program_movement(name)
+        elif order == 9:
+            robot_controler.hard_reset()
         else:
             break
    

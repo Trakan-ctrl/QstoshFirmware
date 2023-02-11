@@ -138,6 +138,11 @@ class RobotControler:
         self.pwm_3.ChangeDutyCycle(angle_to_pwm(90, 3))
         self.pwm_4.ChangeDutyCycle(angle_to_pwm(90, 4))
         
+        self.robot_position["position"][self.servo_dictionary[1]] = 70
+        self.robot_position["position"][self.servo_dictionary[2]] = 90
+        self.robot_position["position"][self.servo_dictionary[3]] = 90
+        self.robot_position["position"][self.servo_dictionary[4]] = 90
+        
     
         
     

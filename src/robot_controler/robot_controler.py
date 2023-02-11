@@ -131,6 +131,12 @@ class RobotControler:
             
     def save_position(self, robot_sequence: list):
         self.robot_database.write_to_database(robot_sequence)
+    
+    def hard_reset(self):
+        self.pwm_1.ChangeDutyCycle(angle_to_pwm(70, 1))
+        self.pwm_2.ChangeDutyCycle(angle_to_pwm(90, 2))
+        self.pwm_3.ChangeDutyCycle(angle_to_pwm(90, 3))
+        self.pwm_4.ChangeDutyCycle(angle_to_pwm(90, 4))
         
     
         
